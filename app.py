@@ -44,8 +44,7 @@ def index():
         new_entry = Guestbook(name=new_name,message=new_msg)
         db.session.add(new_entry)
         db.session.commit()
-    # --- ADD THIS LINE ---
-        flash('Successfully added your message to the database!')
+ 
         
         return redirect(url_for('index'))
 
