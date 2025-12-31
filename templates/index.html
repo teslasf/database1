@@ -24,7 +24,6 @@ Created on Wed Dec 31 12:05:38 2025
     <h1>Postgres Guestbook</h1>
     <form method="POST">
         <input type="text" name="username" placeholder="Your Name" required>
-        <input type="text" name="userlastname" placeholder="Your last name" required>
         <textarea name="content" rows="3" placeholder="Write something..." required></textarea>
         <button type="submit">Send Message</button>
     </form>
@@ -44,7 +43,6 @@ Created on Wed Dec 31 12:05:38 2025
     {% for entry in entries %}
     <div class="entry">
         <strong>{{ entry.name }}</strong><br>
-         <strong>{{ entry.lastname }}</strong><br>
         {{ entry.message }}
     </div>
     {% endfor %}
