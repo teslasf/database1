@@ -30,7 +30,7 @@ class Guestbook(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
     message = db.Column(db.String(500))
-
+    message = message+'all'
 @app.route('/', methods=['GET', 'POST'])
 def index():
     db.create_all() # Ensures tables exist in Postgres
