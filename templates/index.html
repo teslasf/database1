@@ -36,7 +36,10 @@ Created on Wed Dec 31 12:05:38 2025
     <h3>Messages from Database</h3>
     {% for entry in entries %}
     <div class="entry">
-        <strong>{{ entry.name }}</strong><br>
+        <strong>{{ entry.name }}</strong>
+        <small style="color: #888;">— {{ entry.date_posted.strftime('%Y-%m-%d %H:%M') }}</small>
+        
+        <br>
         {{ entry.message }}
     </div>
     {% endfor %}
