@@ -44,6 +44,9 @@ def index():
         new_entry = Guestbook(name=new_name, name=new_lastname,message=new_msg)
         db.session.add(new_entry)
         db.session.commit()
+    # --- ADD THIS LINE ---
+        flash('Successfully added your message to the database!')
+        
         return redirect(url_for('index'))
 
     entries = Guestbook.query.order_by(Guestbook.id.desc()).all()
