@@ -31,6 +31,8 @@ class Guestbook(db.Model):
     name = db.Column(db.String(100))
    # lastname = db.Column(db.String(100))
     message = db.Column(db.String(500))
+    # Add this line:
+    date_posted = db.Column(db.DateTime, default=datetime.utcnow)
   
 @app.route('/', methods=['GET', 'POST'])
 def index():
