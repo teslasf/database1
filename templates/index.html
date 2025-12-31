@@ -21,6 +21,16 @@ Created on Wed Dec 31 12:05:38 2025
     </style>
 </head>
 <body>
+    {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <div style="background-color: #d4edda; color: #155724; padding: 10px; margin-bottom: 20px; border-radius: 4px; border: 1px solid #c3e6cb;">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+    {% endwith %}
+    
     <h1>Postgres Guestbook</h1>
     <form method="POST">
         <input type="text" name="username" placeholder="Your Name" required>
