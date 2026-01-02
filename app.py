@@ -50,10 +50,10 @@ def index():
         records = molecule.filter(molecule_properties__full_mwt__lte=int(new_lastname)).only(['molecule_chembl_id','molecule_structures','molecule_properties'])
 
 # Convert the first 5 results to a Pandas DataFrame for easy viewing
-        df = pd.DataFrame.from_dict(records[:1])
+        df = pd.DataFrame.from_dict(records[:50])
 
         
-        new_entry = Guestbook(name=new_name,lastname=df['molecule_chembl_id'],message=new_msg)
+        new_entry = Guestbook(name=new_name,lastname=df['molecule_chembl_id'][1],message=new_msg)
         db.session.add(new_entry)
         db.session.commit()
  # --- ADD THIS LINE ---
