@@ -29,7 +29,7 @@ db = SQLAlchemy(app)
 class Guestbook(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
-   # lastname = db.Column(db.String(100))
+    lastname = db.Column(db.String(100))
     message = db.Column(db.String(500))
     # Add this line:
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
@@ -40,10 +40,10 @@ def index():
     
     if request.method == 'POST':
         new_name = request.form.get('username')
-       # new_lastname = request.form.get('userlastname')
+        new_lastname = request.form.get('userlastname')
         new_msg = request.form.get('content')
    
-        new_entry = Guestbook(name=new_name,message=new_msg)
+        new_entry = Guestbook(name=new_name,lastname=new_lastname,message=new_msg)
         db.session.add(new_entry)
         db.session.commit()
  # --- ADD THIS LINE ---
