@@ -10,6 +10,9 @@ import os
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime 
+from chembl_webresource_client.new_client import new_client
+import pandas as pd
+
 app = Flask(__name__)
 
 # --- ADD THIS LINE ---
@@ -42,8 +45,15 @@ def index():
         new_name = request.form.get('username')
         new_lastname = request.form.get('userlastname')
         new_msg = request.form.get('content')
-   
-        new_entry = Guestbook(name=new_name,lastname=new_lastname,message=new_msg)
+        # Access the molecule resource
+        molecule = new_client.molecule
+        records = molecule.filter(molecule_properties__full_mwt__lte=int(new_lastname)).only(['molecule_chembl_id','molecule_structures','molecule_properties'])
+
+# Convert the first 5 results to a Pandas DataFrame for easy viewing
+        df = pd.DataFrame.from_dict(records[:1])
+
+        
+        new_entry = Guestbook(name=new_name,lastname=df['molecule_chembl_id'],message=new_msg)
         db.session.add(new_entry)
         db.session.commit()
  # --- ADD THIS LINE ---
